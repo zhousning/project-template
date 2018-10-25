@@ -80,6 +80,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'activeadmin_blaze_theme'
 
 #gem 'omniauth'
 #gem 'omniauth-oauth2'

@@ -20,3 +20,5 @@ user.roles << role
 
 
 User.create(:email => "dayi@qq.com", :password => "dayi@qq.com", :password_confirmation => "dayi@qq.com")
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')

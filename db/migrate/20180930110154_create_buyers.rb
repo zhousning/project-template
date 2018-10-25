@@ -10,7 +10,6 @@ class CreateBuyers < ActiveRecord::Migration
       t.string :checker,         null: false, default: ""
       t.string :payee,           null: false, default: ""
 
-      t.references :user
       t.timestamps null: false
     end
   end

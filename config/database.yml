@@ -1,11 +1,11 @@
-development: &mysql-setting
+mysql-setting: &mysql-setting
   adapter: mysql2
   reconnect: false
-  database: <%= ENV['MYSQL_DATABASE'] %>  
+  database: <%= ENV['MYSQL_DATABASE'] %>
   pool: 10
-  username: <%= ENV['MYSQL_USER'] %>  
-  password: <%= ENV['MYSQL_PASSWORD'] %> 
-  host: localhost 
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: localhost
 
 
 default: &default
