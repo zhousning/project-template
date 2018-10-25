@@ -49,3 +49,15 @@ zh-CN:
       title: "角色详情"
     edit:
       title: "编辑角色"
+
+  buyers:
+    manage:
+      title: "客户管理"
+    index:
+      title: "客户列表"
+    new:
+      title: "添加客户"
+    show:
+      title: "查看客户"
+    edit:
+      title: "编辑客户"

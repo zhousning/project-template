@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root :to => 'home#index'
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   devise_scope :user do
     # get 'login_validate', to: 'users/sessions#login_validate'
@@ -9,7 +8,11 @@ Rails.application.routes.draw do
     get :control, :on => :collection
   end
 
+  resources :buyers
+
   resources :roles
+
+  root :to => 'home#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

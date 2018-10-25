@@ -1,0 +1,47 @@
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-2
+      = form_for @buyer, :html => {:class => "form-horizontal"} do |f|
+        - if @buyer.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@buyer.errors.count, "error")} prohibited this buyer from being saved:"
+            %ul
+              - @buyer.errors.full_messages.each do |msg|
+                %li= msg
+        .form-group
+          = f.label "简称", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :alias, :class => "form-control"
+        .form-group
+          = f.label "客户名称", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :name, :class => "form-control"
+        .form-group
+          = f.label "购方税号", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :duty_paragraph, :class => "form-control"
+        .form-group
+          = f.label "购方银行账号", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :account, :class => "form-control"
+        .form-group
+          = f.label "购方地址电话", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :phone, :class => "form-control"
+        .form-group
+          = f.label "备注", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :remark, :class => "form-control"
+        .form-group
+          = f.label "复核人", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :checker, :class => "form-control"
+        .form-group
+          = f.label "收款人", :class => "col-md-4 control-label"
+          .col-md-8
+            = f.text_field :payee, :class => "form-control"
+        .form-group
+          .col-md-3.col-md-offset-4
+            = f.submit '保存', :class => "btn btn-success btn-lg btn-block"
+          .col-md-3.col-md-offset-1
+            = link_to '返回', buyers_path, :class => "btn btn-danger btn-lg btn-block"

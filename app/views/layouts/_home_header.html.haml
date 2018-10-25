@@ -25,5 +25,8 @@
           -#
             %li
               = link_to "个人中心", control_users_path
+          - if current.super_admin?
+            %li
+              = link_to "后台管理", new_user_session_path
           %li
             %a{:href=>destroy_user_session_path, "data-method"=>"delete"} 注销
