@@ -1,0 +1,34 @@
+.control-wrapper.container-fluid.pdlr-zero
+  .mail-box
+    %aside.sm-side
+      .user-head
+        %a.inbox-avatar{:href => "javascript:;"}
+          = image_tag "my-head.jpg", :hieght => "60", :width => "64"
+        .user-name
+          %h5
+            = link_to current_user.email, nil 
+          %span
+      %ul.inbox-nav
+        -#
+          %li.js-users-control
+            = link_to control_users_path, :class => "btn" do
+              %i.fa.fa-inbox
+              个人中心
+        - if can? :index, Role 
+          %li.js-roles
+            = link_to roles_path, :class => "btn" do
+              %i.fa.fa-bookmark-o
+              角色管理
+        - if can? :index, User
+          %li.js-users
+            = link_to users_path, :class => "btn" do
+              %i.fa.fa-bookmark-o
+              用户管理
+    %aside.lg-side
+      .inbox-body-ctn
+        .inbox-head
+          %h3
+            = t(controller_name + "." + action_name + '.title')
+        .inbox-body
+          = yield :main_body 
+
