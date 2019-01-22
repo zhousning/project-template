@@ -1,0 +1,54 @@
+class <%= model.pluralize.camelcase %>Controller < ApplicationController
+  layout "application_control"
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
+  def index
+    @<%= model.pluralize.underscore %> = <%= model.camelcase %>.all
+  end
+
+  def show
+    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
+  end
+
+  def new
+    @<%= model.underscore %> = <%= model.camelcase %>.new
+  end
+
+  def edit
+    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
+  end
+
+  def update
+    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
+    if @<%= model.underscore %>.update(<%= model.underscore %>_params)
+      redirect_to <%= model.underscore %>_path(@<%= model.underscore %>) 
+    else
+      render :edit
+    end
+  end
+
+  def create
+    @<%= model.underscore %> = <%= model.camelcase %>.new(<%= model.underscore %>_params)
+    #@<%= model.underscore %>.user = current_user
+    if @<%= model.underscore %>.save
+      redirect_to @<%= model.underscore %>
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
+    @<%= model.underscore %>.destroy
+    redirect_to :action => :index
+  end
+
+
+  private
+
+    def <%= model.underscore %>_params
+      params.require(:<%= model.underscore %>).permit(<% model.singularize.camelcase.constantize.columns[1..model.singularize.camelcase.constantize.columns.size-3].each_with_index do |column, index| %> :<%= column.name %><%= index == model.singularize.camelcase.constantize.columns.size-4 ? '' : ','%> <% end %>)
+    end
+end
+
