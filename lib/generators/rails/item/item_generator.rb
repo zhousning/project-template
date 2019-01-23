@@ -6,6 +6,7 @@ class Rails::ItemGenerator < Rails::Generators::Base
   argument :columns, :type => :array, :default => []
   class_option :label, :aliases => '-l', :type => :array, :default => []
   class_option :tag, :aliases => '-t', :type => :array, :default => []
+  class_option :image, :aliases => '-i', :type => :boolean, :default => false 
 
   def generate_model
     attributes = columns.join(" ")
@@ -27,19 +28,24 @@ class Rails::ItemGenerator < Rails::Generators::Base
     @mc = model.camelcase
     @mpc = model.pluralize.camelcase
     @mpu = model.pluralize.underscore
+    @enclosure = options[:image]
 
     @attrs = []
     columns.each do |column|
       @attrs << column.slice(/[^:]+/)
     end
 
-    template 'controller.template', "app/controllers/#{controller_name}_controller.rb", @attrs, @mu, @mc, @mpc, @mpu
-    template 'index.template', "app/views/#{controller_name}/index.html.haml", @attrs, @mu, @mc, @mpc, @mpu
-    template '_form.template', "app/views/#{controller_name}/_form.html.haml", @attrs, @mu, @mc, @mpc, @mpu
-    template 'new.template', "app/views/#{controller_name}/new.html.haml", @attrs, @mu, @mc, @mpc, @mpu
-    template 'edit.template', "app/views/#{controller_name}/edit.html.haml", @attrs, @mu, @mc, @mpc, @mpu
-    template 'show.template', "app/views/#{controller_name}/show.html.haml", @attrs, @mu, @mc, @mpc, @mpu
+    template 'controller.template', "app/controllers/#{controller_name}_controller.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+    template 'index.template', "app/views/#{controller_name}/index.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+    template '_form.template', "app/views/#{controller_name}/_form.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+    template 'new.template', "app/views/#{controller_name}/new.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+    template 'edit.template', "app/views/#{controller_name}/edit.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+    template 'show.template', "app/views/#{controller_name}/show.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
     template 'js.template', "app/assets/javascripts/#{controller_name}.js", @attrs, @mu, @mc, @mpc, @mpu
+    template 'model.template', "app/models/#{@mu}.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+    if @enclosure
+      template '_enclosure.template', "app/views/#{controller_name}/_enclosure_fields.html.haml"
+    end
   end
 
   private

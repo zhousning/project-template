@@ -46,7 +46,12 @@ class <%= @mpc %>Controller < ApplicationController
 
   private
     def <%= @mu %>_params
-      params.require(:<%= @mu %>).permit(<% @attrs.each_with_index do |attr, index| %> :<%= attr %><%= index == @attrs.size-1 ? '' : ','%><% end %>)
+      params.require(:<%= @mu %>).permit(<% @attrs.each_with_index do |attr, index| %> :<%= attr %><%= index == @attrs.size-1 ? '' : ','%><% end %><% if @enclosure %> , enclosures_attributes: enclosure_params<% end %>)
     end
+  <% if @enclosure %>
+    def enclosure_params
+      [:id, :file, :_destroy]
+    end
+  <% end %>
 end
 
