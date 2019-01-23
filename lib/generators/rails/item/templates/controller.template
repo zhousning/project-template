@@ -1,54 +1,52 @@
-class <%= model.pluralize.camelcase %>Controller < ApplicationController
+class <%= @mpc %>Controller < ApplicationController
   layout "application_control"
   before_action :authenticate_user!
   load_and_authorize_resource
 
   def index
-    @<%= model.pluralize.underscore %> = <%= model.camelcase %>.all
+    @<%= @mpu %> = <%= @mc %>.all
   end
 
   def show
-    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
+    @<%= @mu %> = <%= @mc %>.find(params[:id])
   end
 
   def new
-    @<%= model.underscore %> = <%= model.camelcase %>.new
+    @<%= @mu %> = <%= @mc %>.new
   end
 
   def edit
-    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
+    @<%= @mu %> = <%= @mc %>.find(params[:id])
   end
 
   def update
-    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
-    if @<%= model.underscore %>.update(<%= model.underscore %>_params)
-      redirect_to <%= model.underscore %>_path(@<%= model.underscore %>) 
+    @<%= @mu %> = <%= @mc %>.find(params[:id])
+    if @<%= @mu %>.update(<%= @mu %>_params)
+      redirect_to <%= @mu %>_path(@<%= @mu %>) 
     else
       render :edit
     end
   end
 
   def create
-    @<%= model.underscore %> = <%= model.camelcase %>.new(<%= model.underscore %>_params)
-    #@<%= model.underscore %>.user = current_user
-    if @<%= model.underscore %>.save
-      redirect_to @<%= model.underscore %>
+    @<%= @mu %> = <%= @mc %>.new(<%= @mu %>_params)
+    #@<%= @mu %>.user = current_user
+    if @<%= @mu %>.save
+      redirect_to @<%= @mu %>
     else
       render :new
     end
   end
 
   def destroy
-    @<%= model.underscore %> = <%= model.camelcase %>.find(params[:id])
-    @<%= model.underscore %>.destroy
+    @<%= @mu %> = <%= @mc %>.find(params[:id])
+    @<%= @mu %>.destroy
     redirect_to :action => :index
   end
 
-
   private
-
-    def <%= model.underscore %>_params
-      params.require(:<%= model.underscore %>).permit(<% model.singularize.camelcase.constantize.columns[1..model.singularize.camelcase.constantize.columns.size-3].each_with_index do |column, index| %> :<%= column.name %><%= index == model.singularize.camelcase.constantize.columns.size-4 ? '' : ','%> <% end %>)
+    def <%= @mu %>_params
+      params.require(:<%= @mu %>).permit(<% @attrs.each_with_index do |attr, index| %> :<%= attr %><%= index == @attrs.size-1 ? '' : ','%><% end %>)
     end
 end
 

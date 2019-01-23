@@ -1,0 +1,24 @@
+- provide(:title, t('.title'))
+
+- content_for :main_body do
+  .container-fluid
+    .row
+      .col-md-12
+        %table.table.text-center.table-bordered
+          %thead
+            %tr
+            <% @attrs.each do |attr| %>
+              %th 
+                = Setting.<%= @mpu %>.<%= attr %><% end %>
+              %th
+          %tbody
+            - @<%= @mpu %>.each_with_index do |<%= @mu %>, index|
+              %tr
+              <% @attrs.each do |attr| %>
+                %td
+                  = <%= @mu %>.<%= attr %><% end %>
+                %td
+                  = link_to '编辑', edit_<%= @mu %>_path(@<%= @mu %>), :class => "btn btn-success"
+                  = link_to '返回', <%= @mpu %>_path, :class => "btn btn-danger"
+
+= render "layouts/control_panel"

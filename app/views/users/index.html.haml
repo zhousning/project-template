@@ -3,17 +3,16 @@
 - content_for :main_body do
   .container-fluid
     .row
-      .col-md-3
-        = render "layouts/system_search"
-      .col-md-8
-    .row.buyer-table-ctn
       .col-md-12
-        %table.table.text-center.table-bordered.table-list-search
+        %table#table.table.table-hover.text-center
           %thead
             %tr
-              %th 序号
-              %th 邮箱
-              %th 权限
+              %th
+                序号
+              %th{"data-field" => "email", "data-filter-control" => "input"}
+                邮箱
+              %th{"data-field" => "name", "data-filter-control" => "input"}
+                权限
               %th
           %tbody
             - @users.each_with_index do |user, index|

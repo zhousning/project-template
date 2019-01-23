@@ -49,7 +49,8 @@ group :production do
   #gem 'mysql2', '~> 0.3.13'
 end
 
-gem 'bootstrap-sass', '~> 3.3.5'
+#gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap', '~> 4.2.1'
 
 gem 'haml-rails'
 
@@ -107,3 +108,4 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 #gem 'yaml_db'
 
+gem 'mini_racer'

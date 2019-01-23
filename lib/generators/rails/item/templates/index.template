@@ -6,7 +6,7 @@
       .col-md-3
         = render "layouts/system_search"
       .col-md-2
-        = link_to "添加", new_<%= model.singularize.underscore %>_path, :class => "btn btn-info"
+        = link_to "添加", new_<%= @mu %>_path, :class => "btn btn-info"
     .row.buyer-table-ctn
       .col-md-12
         %table.table.text-center.table-bordered.table-list-search
@@ -14,23 +14,21 @@
             %tr
               %th 
                 #
-            <% model.singularize.camelcase.constantize.columns[1..model.singularize.camelcase.constantize.columns.size-3].each do |column| %>
+            <% @attrs.each do |attr| %>
               %th 
-                = Setting.<%= model.pluralize.underscore %>.<%= column.name %>
-            <% end %>
+                = Setting.<%= @mpu %>.<%= attr %><% end %>
               %th
           %tbody
-            - @<%= model.pluralize.underscore %>.each_with_index do |model, index|
+            - @<%= @mpu %>.each_with_index do |<%= @mu %>, index|
               %tr
                 %td
                   = index+1
-              <% model.singularize.camelcase.constantize.columns[1..model.singularize.camelcase.constantize.columns.size-3].each do |column| %>
+              <% @attrs.each do |attr| %>
                 %td
-                  = model.<%= column.name %>
-              <% end %>
+                  = <%= @mu %>.<%= attr %><% end %>
                 %td
-                  = link_to "编辑", edit_<%= model.singularize.underscore  %>_path(<%= model.singularize.underscore  %>), :class => "btn btn-default"
-                  = link_to "查看", <%= model.singularize.underscore  %>_path(<%= model.singularize.underscore  %>), :class => "btn btn-default"
-                  = link_to "删除", <%= model.singularize.underscore  %>, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-default"
+                  = link_to "查看", <%= @mu %>_path(<%= @mu %>), :class => "btn btn-default"
+                  = link_to "编辑", edit_<%= @mu %>_path(<%= @mu %>), :class => "btn btn-default"
+                  = link_to "删除", <%= @mu  %>, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-default"
 
 = render "layouts/control_panel"
