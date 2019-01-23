@@ -41,7 +41,7 @@
           .col-sm-9
             = f.text_field :payee, :class => "form-control"
         .form-group.row
-          = f.label "截图附件", :class => "col-sm-3 control-label"
+          = f.label "主图", :class => "col-sm-3 control-label"
           .col-sm-9
             = f.fields_for :enclosures do |enclosure|
               = render 'enclosure_fields', f: enclosure

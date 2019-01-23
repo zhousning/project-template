@@ -1,5 +1,3 @@
-require 'rake'
-
 class Rails::ItemGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
   
