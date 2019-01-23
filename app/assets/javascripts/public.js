@@ -1,4 +1,4 @@
-$(".users.index").ready(function() {
+$(".index").ready(function() {
     var activeSystemClass = $('.list-group-item.active');
 
     //something is entered in search form

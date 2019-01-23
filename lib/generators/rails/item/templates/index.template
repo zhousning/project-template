@@ -12,8 +12,7 @@
         %table.table.text-center.table-bordered.table-list-search
           %thead
             %tr
-              %th 
-                #
+              %th #
             <% @attrs.each do |attr| %>
               %th 
                 = Setting.<%= @mpu %>.<%= attr %><% end %>
@@ -27,8 +26,8 @@
                 %td
                   = <%= @mu %>.<%= attr %><% end %>
                 %td
-                  = link_to "查看", <%= @mu %>_path(<%= @mu %>), :class => "btn btn-default"
-                  = link_to "编辑", edit_<%= @mu %>_path(<%= @mu %>), :class => "btn btn-default"
-                  = link_to "删除", <%= @mu  %>, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-default"
+                  = link_to "查看", <%= @mu %>_path(<%= @mu %>), :class => "btn btn-primary btn-sm"
+                  = link_to "编辑", edit_<%= @mu %>_path(<%= @mu %>), :class => "btn btn-success btn-sm"
+                  = link_to "删除", <%= @mu  %>, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-danger btn-sm"
 
 = render "layouts/control_panel"
