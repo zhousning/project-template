@@ -31,7 +31,7 @@
               %td
                 = link_to '编辑', edit_buyer_path(@buyer), :class => "btn btn-success"
                 = link_to '返回', buyers_path, :class => "btn btn-danger"
-                -#
-                  = link_to '发票列表', buyer_invoices_path(@buyer), :class => "btn btn-info"
-                  = link_to '删除', @buyer, :method => :delete, :data => { :confirm => '确定删除?' }, :class => "btn btn-danger"
+      .col-md-12
+        - @buyer.enclosures.each do |e|
+          = image_tag e.file_url(:small_width)
 = render "layouts/control_panel"

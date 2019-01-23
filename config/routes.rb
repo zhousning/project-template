@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :buyers
 
+  resources :birds
+  
   resources :roles
 
   root :to => 'home#index'

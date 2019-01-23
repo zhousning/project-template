@@ -16,5 +16,18 @@
 #
 
 class Buyer < ActiveRecord::Base
-  #has_many :invoices, :dependent => :destroy
+  has_many :enclosures, :dependent => :destroy
+
+
+  #validates :name,     :presence => true, :uniqueness => true
+
+  accepts_nested_attributes_for :enclosures, reject_if: :all_blank, allow_destroy: true
+
+
+  #before_save :store_unique_number
+  #def store_unique_number
+  #  if self.number == ""
+  #    self.number = Time.now.to_i.to_s + "%04d" % [rand(10000)]
+  #  end
+  #end
 end

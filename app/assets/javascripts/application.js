@@ -16,4 +16,5 @@
 //= require popper
 //= require feather 
 //= require jquery-readyselector 
+//= require cocoon
 //= require_tree .

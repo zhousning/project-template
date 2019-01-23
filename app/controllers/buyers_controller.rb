@@ -48,7 +48,11 @@ class BuyersController < ApplicationController
   private
 
     def buyer_params
-      params.require(:buyer).permit(:alias, :name, :duty_paragraph, :account, :phone)
+      params.require(:buyer).permit(:alias, :name, :duty_paragraph, :account, :phone, enclosures_attributes: enclosure_params)
+    end
+
+    def enclosure_params
+      [:id, :file, :_destroy]
     end
 end
 

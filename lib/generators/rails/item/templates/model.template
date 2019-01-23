@@ -1,0 +1,3 @@
+class <%= @mc %> < ActiveRecord::Base
+
+end
