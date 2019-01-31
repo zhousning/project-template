@@ -1,7 +1,7 @@
 class Rails::ItemGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
   
-  #model或attrs 也可通过@model或@attrs访问
+  #model或attrs 也可通过@model或@columns访问
   argument :model, :type => :string, :default => "model"
   argument :columns, :type => :array, :default => []
   class_option :label, :aliases => '-l', :type => :array, :default => []
@@ -42,6 +42,7 @@ class Rails::ItemGenerator < Rails::Generators::Base
     template 'edit.template', "app/views/#{controller_name}/edit.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
     template 'show.template', "app/views/#{controller_name}/show.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
     template 'js.template', "app/assets/javascripts/#{controller_name}.js", @attrs, @mu, @mc, @mpc, @mpu
+    template 'scss.template', "app/assets/stylesheets/#{controller_name}.scss"
     template 'model.template', "app/models/#{@mu}.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
     if @enclosure
       template '_enclosure.template', "app/views/#{controller_name}/_enclosure_fields.html.haml"
