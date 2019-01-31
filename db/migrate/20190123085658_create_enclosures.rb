@@ -4,6 +4,7 @@ class CreateEnclosures < ActiveRecord::Migration
       t.string :file,  null: false, default: ""
 
       t.references :buyer
+      t.references :bird
 
       t.timestamps null: false
     end
