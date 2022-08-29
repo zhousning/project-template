@@ -1,0 +1,5 @@
+---
+#controller的名字均为程序中controller名称的单数，如AnalysesController为Analysis，必须有对应的model,可以建空model
+#-
+#  controller: grp_workers_controller
+#  actions: [index, query_all, query_info, signlogs]
